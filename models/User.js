@@ -16,7 +16,7 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -35,6 +35,13 @@ User.init(
         len: [8],
       },
     },
+    stories_created: {
+      type: DataTypes.INTEGER,
+    },
+    contributions: {
+      type: DataTypes.INTEGER,
+    },
+    
   },
   {
     hooks: {
