@@ -15,31 +15,25 @@
 
 <body>
 
-    
-  <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
+              <img src="./assets/images/logo.png" class="image is-64x64 m-1 ml-2">
               <a class="navbar-item" href="/">
                 <span class="title">Boundless</span>
               </a>
-          
-              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-              </a>
             </div>
+
 
             <div class="navbar-end">
                 <div class="navbar-item">
                   <div class="buttons">
                     {{#if logged_in}}
-                    <a class="button is-primary" id="profile" href="/profile">profile</a>
+                    <a class="button is-primary" id="profile" href="/profile">Profile</a>
                     <a class="button is-dark" id="logout" href="/logout">Logout</a>
                     {{else}}
                     <a class="button is-dark" id="login" href="/login">Login</a>
-                    <a class="button is-primary" id="sign-up" href="sign-up">Sign up</a>
+                    <a class="button is-primary" id="sign-up" href="/sign-up">Sign up</a>
                     {{/if}}
                   </div>
                 </div>
@@ -47,13 +41,21 @@
           </nav>
     </header>
 
+
     <main class="container">
       <!-- Render the sub layout -->
       {{{ body }}}
     </main>
-    <footer>
-      
-    </footer>
+
+
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong>Boundless</strong> by <a href="">InkSlingers</a>. The source code is licensed
+      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. See more of our projects <a href="">here</a>.
+    </p>
+  </div>
+</footer>
   </div>
 
   <!-- Render script for logged in users only -->
