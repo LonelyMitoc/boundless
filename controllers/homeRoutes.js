@@ -5,7 +5,7 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   try {
     // Get all stories and JOIN with user data
-    // const storyData = await story.findAll({
+    // const storyData = await Story.findAll({
     //   include: [
     //     {
     //       model: User,
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     // });
 
     // // Serialize data so the template can read it
-    // const stories = storyData.map((story) => story.get({ plain: true }));
+    // const stories = storyData.map((story) => Story.get({ plain: true }));
     const stories = [];
     // Pass serialized data and session flag into template
     res.render('homepage', { 
@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
 
 router.get('/story/:id', async (req, res) => {
   try {
-    const storyData = await story.findByPk(req.params.id, {
+    const storyData = await Story.findByPk(req.params.id, {
       include: [
         {
           model: User,
@@ -55,7 +55,7 @@ router.get('/profile', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: story }],
+      include: [{ model: Story }],
     });
 
     const user = userData.get({ plain: true });
