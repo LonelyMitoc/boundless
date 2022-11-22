@@ -1,7 +1,5 @@
 const router = require('express').Router();
-
 const { Story } = require('../../models');
-
 const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
@@ -14,6 +12,19 @@ router.post('/', withAuth, async (req, res) => {
     res.status(200).json(newStory);
   } catch (err) {
     res.status(400).json(err);
+  }
+});
+
+router.get('/:id', async (req, res) => {
+  try {
+    const getStory = await Story.findByPk(req.params.id);
+    const story = getStory.get({ plain: true });
+    res.render('story', {
+      story,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
