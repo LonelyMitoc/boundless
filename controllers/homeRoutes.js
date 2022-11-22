@@ -5,18 +5,18 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   try {
     // Get all stories and JOIN with user data
-    const storyData = await story.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
-    });
+    // const storyData = await story.findAll({
+    //   include: [
+    //     {
+    //       model: User,
+    //       attributes: ['name'],
+    //     },
+    //   ],
+    // });
 
-    // Serialize data so the template can read it
-    const stories = storyData.map((story) => story.get({ plain: true }));
-
+    // // Serialize data so the template can read it
+    // const stories = storyData.map((story) => story.get({ plain: true }));
+    const stories = [];
     // Pass serialized data and session flag into template
     res.render('homepage', { 
       stories, 
