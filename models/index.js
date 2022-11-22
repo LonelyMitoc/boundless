@@ -6,7 +6,7 @@ User.hasMany(Story, {
   onDelete: 'NO ACTION'
 });
 
-Story.belongsTo(User, {
+Story.belongsToMany(User, {
   through: 'User_Stories',
   foreignKey: 'user_id',
 });
