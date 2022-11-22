@@ -22,3 +22,8 @@ header, .project:not(:last-child) {
   font-weight: bold;
   margin-left: -5px;
 }
+
+.title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 55px;
+}
