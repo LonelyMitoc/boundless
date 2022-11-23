@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Story } = require('../../models');
+const { Story, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
@@ -17,8 +17,17 @@ router.post('/', withAuth, async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const getStory = await Story.findByPk(req.params.id);
+    const getStory = await Story.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
     const story = getStory.get({ plain: true });
+    
     res.render('story', {
       story,
       logged_in: req.session.logged_in,
