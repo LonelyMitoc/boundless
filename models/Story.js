@@ -15,6 +15,10 @@ Story.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    content: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
     date_created: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -23,10 +27,12 @@ Story.init(
     checked_out: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: false,
     },
     upvotes_count: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 0,
     },
     contributors: {
       type: DataTypes.INTEGER,
