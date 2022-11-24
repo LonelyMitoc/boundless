@@ -56,7 +56,7 @@ Story.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Story',
+    modelName: 'story',
   }
 );
 

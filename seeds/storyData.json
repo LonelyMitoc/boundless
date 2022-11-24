@@ -3,7 +3,9 @@
     "name": "Rubber Ducks In The Sun",
     "content": "The ducks were very happy to be in the sun. Off in the distance some clouds were forming.",
     "date_created": "2022-06-23 12:34:56",
-    "contributors": "4"
+    "contributors": "4",
+    "creator_id" : 1,
+    "published": true
   },
   {
     "name": "Rubber Ducks In The Rain",

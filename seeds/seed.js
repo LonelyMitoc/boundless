@@ -15,7 +15,7 @@ const seedDatabase = async () => {
   for (const story of storyData) {
     await Story.create({
       ...story,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
+      // user_id: users[Math.floor(Math.random() * users.length)].id,
     });
   }
 
