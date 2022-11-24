@@ -15,28 +15,6 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
-  try {
-    const getStory = await Story.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
-    });
-
-    const story = getStory.get({ plain: true });
-    
-    res.render('story', {
-      story,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 router.delete('/:id', withAuth, async (req, res) => {
   try {
     const storyData = await Story.destroy({
