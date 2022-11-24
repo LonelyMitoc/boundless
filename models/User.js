@@ -41,7 +41,6 @@ User.init(
     contributions: {
       type: DataTypes.INTEGER,
     },
-    
   },
   {
     hooks: {

@@ -45,6 +45,11 @@ Story.init(
         key: 'id',
       },
     },
+    published: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
   },
   {
     sequelize,
