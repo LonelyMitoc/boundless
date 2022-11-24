@@ -4,7 +4,7 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
-    // Get all stories and JOIN with user data
+
     // const storyData = await Story.findAll({
     //   include: [
     //     {
@@ -37,9 +37,9 @@ router.get('/profile', withAuth, async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
-
+    console.log(user)
     res.render('profile', {
-      ...user,
+      user,
       logged_in: true
     });
   } catch (err) {

@@ -22,26 +22,37 @@ const newFormHandler = async (event) => {
   }
 };
 
-const delButtonHandler = async (event) => {
-  if (event.target.hasAttribute('data-id')) {
-    const id = event.target.getAttribute('data-id');
+async function addIsActive(event){
+  event.preventDefault();
 
-    const response = await fetch(`/api/projects/${id}`, {
-      method: 'DELETE',
-    });
+  const contDD = document.querySelector('#cont-dropdown');
+  contDD.classList.contains('is-active')? 
+  contDD.classList.remove('is-active'):
+  contDD.classList.add('is-active');
 
-    if (response.ok) {
-      document.location.replace('/profile');
-    } else {
-      alert('Failed to delete project');
-    }
-  }
-};
+  
+  
+}
+// const delButtonHandler = async (event) => {
+//   if (event.target.hasAttribute('data-id')) {
+//     const id = event.target.getAttribute('data-id');
 
-document
-  .querySelector('.new-project-form')
-  .addEventListener('submit', newFormHandler);
+//     const response = await fetch(`/api/projects/${id}`, {
+//       method: 'DELETE',
+//     });
 
-document
-  .querySelector('.project-list')
-  .addEventListener('click', delButtonHandler);
+//     if (response.ok) {
+//       document.location.replace('/profile');
+//     } else {
+//       alert('Failed to delete project');
+//     }
+//   }
+// };
+
+document.querySelector('#cont-dropdown').addEventListener('click', addIsActive);
+
+
+
+// document
+//   .querySelector('.project-list')
+//   .addEventListener('click', delButtonHandler);
