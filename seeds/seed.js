@@ -1,5 +1,5 @@
 const sequelize = require('../config/connection');
-const { User, Story } = require('../models');
+const { User, Story, UserStories } = require('../models');
 
 const userData = require('./userData.json');
 const storyData = require('./StoryData.json');
@@ -12,10 +12,25 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  for (const story of storyData) {
-    await Story.create({
-      ...story,
-      // user_id: users[Math.floor(Math.random() * users.length)].id,
+  const story = await Story.bulkCreate(storyData, {
+    individualHooks: true,
+    returning: true,
+  });
+
+  for (let i = 0; i < story.length; i++) {
+    const { id: randomUserId } = users[
+      Math.floor(Math.random() * users.length)
+    ];
+
+    const { id: randomStoryId } = story[
+      Math.floor(Math.random() * story.length)
+    ];
+
+    await UserStories.create({
+      user_id: randomUserId,
+      story_id: randomStoryId 
+    }).catch((err) => {
+      console.log(err);
     });
   }
 
