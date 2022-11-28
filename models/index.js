@@ -1,18 +1,17 @@
 const User = require('./User');
 const Story = require('./Story');
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
-const User_Stories = sequelize.define('User_stories', {}, { timestamps: false });
+const UserStories = require('./UserStories');
 
 User.belongsToMany(Story, {
-  through: 'User_Stories',
-  foreignKey: 'user_id',
+  through: 'user_stories',
+  unique: false,
   onDelete: 'NO ACTION',
 });
 
 Story.belongsToMany(User, {
-  through: 'User_Stories',
-  foreignKey: 'user_id',
+  through: 'user_stories',
+  unique: false,
+  onDelete: 'NO ACTION',
 });
 
-module.exports = { User, Story };
+module.exports = { User, Story, UserStories };
