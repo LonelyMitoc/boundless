@@ -1,55 +1,79 @@
-const newFormHandler = async (event) => {
-  event.preventDefault();
+// const newFormHandler = async (event) => {
+//   event.preventDefault();
 
-  const name = document.querySelector('#project-name').value.trim();
-  const needed_funding = document.querySelector('#project-funding').value.trim();
-  const description = document.querySelector('#project-desc').value.trim();
+// const { init } = require("../../models/User");
 
-  if (name && needed_funding && description) {
-    const response = await fetch(`/api/projects`, {
-      method: 'POST',
-      body: JSON.stringify({ name, needed_funding, description }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+//   const name = document.querySelector('#project-name').value.trim();
+//   const needed_funding = document.querySelector('#project-funding').value.trim();
+//   const description = document.querySelector('#project-desc').value.trim();
 
-    if (response.ok) {
-      document.location.replace('/profile');
-    } else {
-      alert('Failed to create project');
-    }
-  }
-};
-
-async function addIsActive(event){
-  event.preventDefault();
-
-  const contDD = document.querySelector('#cont-dropdown');
-  contDD.classList.contains('is-active')? 
-  contDD.classList.remove('is-active'):
-  contDD.classList.add('is-active');
-
-  
-  
-}
-// const delButtonHandler = async (event) => {
-//   if (event.target.hasAttribute('data-id')) {
-//     const id = event.target.getAttribute('data-id');
-
-//     const response = await fetch(`/api/projects/${id}`, {
-//       method: 'DELETE',
+//   if (name && needed_funding && description) {
+//     const response = await fetch(`/api/projects`, {
+//       method: 'POST',
+//       body: JSON.stringify({ name, needed_funding, description }),
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
 //     });
 
 //     if (response.ok) {
 //       document.location.replace('/profile');
 //     } else {
-//       alert('Failed to delete project');
+//       alert('Failed to create project');
 //     }
 //   }
 // };
 
-document.querySelector('#cont-dropdown').addEventListener('click', addIsActive);
+function initialize(){
+  const createTB = document.querySelector('#create-tab-button');
+  const collabTB = document.querySelector('#collab-tab-button');
+  const createTab = document.querySelector('#create-tab');
+  const collabTab = document.querySelector('#collaborate-tab');
+
+  createTB.classList.add('is-active');
+  collabTB.classList.remove('is-active');
+  createTab.style.display = '';
+  collabTab.style.display = 'none';
+}
+
+async function createTab(event){
+  event.preventDefault();
+
+  const createTB = document.querySelector('#create-tab-button');
+  const collabTB = document.querySelector('#collab-tab-button');
+  const createTab = document.querySelector('#create-tab');
+  const collabTab = document.querySelector('#collaborate-tab');
+
+  if (createTB.classList.contains('is-active')){
+  } else {
+    collabTB.classList.remove('is-active');
+    createTB.classList.add('is-active');
+    collabTab.style.display = 'none';
+    createTab.style.display = '';
+  } 
+}
+async function collabTab(event){
+  event.preventDefault();
+
+  const createTB = document.querySelector('#create-tab-button');
+  const collabTB = document.querySelector('#collab-tab-button');
+  const createTab = document.querySelector('#create-tab');
+  const collabTab = document.querySelector('#collaborate-tab');
+
+  if (collabTB.classList.contains('is-active')){
+  } else {
+    createTB.classList.remove('is-active');
+    collabTB.classList.add('is-active');
+    collabTab.style.display = '';
+    createTab.style.display = 'none';
+
+  } 
+}
+
+
+initialize()
+document.querySelector('#create-tab-button').addEventListener('click', createTab);
+document.querySelector('#collab-tab-button').addEventListener('click', collabTab);
 
 
 
