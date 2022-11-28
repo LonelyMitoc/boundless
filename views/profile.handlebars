@@ -7,9 +7,13 @@
           {{user.username}}
         </p>
       </header>
-
     </div>
-
+  <div class="contributed-list">
+    
+        <ul>
+        <li class="list-item"> <a href="/story/{{story.id}}" class='dropdown-item is-link'>Story Name</a></li>
+        </ul>
+      </div>
     <div class='dropdown' id='cont-dropdown'>
       <div class='dropdown-trigger'>
         <button
@@ -17,19 +21,18 @@
           aria-haspopup='true'
           aria-controls='dropdown-menu2'
         >
-          <span>Contributed:</span>
+
           <span class='icon is-small'>
             <i class='fas fa-angle-down' aria-hidden='true'></i>
           </span>
         </button>
-
       </div>
+      
       <div class='dropdown-menu' id='dropdown-menu2' role='menu'>
         <div class='dropdown-content'>
           {{#each user.stories as |story| }}
 
           {{!-- {{#if story.published }}
-          <a href="/story/{{story.id}}" class='dropdown-item is-link'>
           {{story.name}}
           </a>
           <hr class='dropdown-divider' />
@@ -48,12 +51,33 @@
       </div>
     </div>
   </div>
-<div class="column is-9">
-  Stuff 
-   {{#each user.stories as |story| }}
-   {{story.name}}
-   {{/each}}
-</div>
+
+
+  <div class="column is-9">
+      <div class="tabs is-boxed is-medium is-centered">
+      <ul>
+        <li id="create-button" class="is-active "><a>Create</a></li>
+        <li><a>Collaborate</a></li>
+      </ul>
+    </div>
+
+      <p>
+        <div id="create-tab" class=" container">
+          <form>
+            <input class="input is-primary is-medium mb-2" type="text" placeholder="Title">
+
+            <div class="control mb-2">
+              <textarea class="textarea" placeholder="The beginning of your short story..."></textarea>
+            </div>
+
+            <div class="control is-align-items-center">
+              <button class="button is-medium is-link is-align-items-center">Submit</button>
+            </div>
+
+          </form>
+        </div>
+      </p>
+  </div>
 </div>
 
 
