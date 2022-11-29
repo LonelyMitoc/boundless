@@ -14,6 +14,12 @@ const PORT = process.env.PORT || 3001;
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
 
+hbs.handlebars.registerHelper('breaklines', function(text) {
+  text = hbs.handlebars.Utils.escapeExpression(text);
+  text = text.replace(/(\r\n|\n|\r)/gm, '<br>');
+  return new hbs.handlebars.SafeString(text);
+});
+
 const sess = {
   secret: 'Super secret secret',
   cookie: {
