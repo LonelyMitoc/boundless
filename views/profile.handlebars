@@ -14,9 +14,9 @@
       <ul>
         {{#each user.stories as |story| }}
             {{#if story.published }}
-              <li class="list-item"> <a href="/story/{{story.id}}" class='list-item is-link'>{{story.name}}</a></li>
+              <li class="list-item"> <a href="/story/{{story.id}}" class='list-item is-link'>{{story.title}}</a></li>
             {{else}}
-              <li class='has-text-light'>{{story.name}}</li>
+              <li class='has-text-light'>{{story.title}}</li>
             {{/if}}
           {{/each}}
       </ul>
@@ -73,6 +73,5 @@
 
 
 
-<script src='./js/profile.js'></script>
 <script src='./js/logout.js'></script>
 <script src='./js/profile.js'></script>
