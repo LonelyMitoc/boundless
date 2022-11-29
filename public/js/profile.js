@@ -23,6 +23,30 @@
 //     }
 //   }
 // };
+async function newStory(event){
+  const title = document.querySelector('#new-title').value.trim();
+  const content = document.querySelector('#new-content').value.trim();
+
+  if(title && content){
+    const response= await fetch('/api/story', {
+      method: 'POST',
+         body: JSON.stringify({ title, content }),
+           headers: {
+          'Content-Type': 'application/json',}
+    
+    });
+    if (response.ok) {
+       document.location.replace('/profile');
+       alert('Story submitted!');
+       } else {
+       alert('Failed to create project');
+       }
+
+  }
+
+}
+
+
 
 function initialize(){
   const createTB = document.querySelector('#create-tab-button');
@@ -74,6 +98,7 @@ async function collabTab(event){
 initialize()
 document.querySelector('#create-tab-button').addEventListener('click', createTab);
 document.querySelector('#collab-tab-button').addEventListener('click', collabTab);
+document.querySelector('#create-button').addEventListener('click', newStory);
 
 
 
