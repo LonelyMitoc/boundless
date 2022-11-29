@@ -44,7 +44,6 @@ router.get('/profile', withAuth, async (req, res) => {
       attributes: { exclude: ['password'] },
       include: [{ model: Story }],
     });
-
     const user = userData.get({ plain: true });
     console.log(user)
     res.render('profile', {

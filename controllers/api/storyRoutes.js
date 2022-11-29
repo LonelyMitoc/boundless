@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Story, User } = require('../../models');
+const { Story, User, UserStories } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
@@ -7,8 +7,15 @@ router.post('/', withAuth, async (req, res) => {
     const newStory = await Story.create({
       ...req.body,
       user_id: req.session.user_id,
+      creator_id: req.session.user_id
     });
+    console.log(newStory);
 
+    const userStory = await UserStories.create({
+      user_id: req.session.user_id,
+      story_id: newStory.id,
+    })
+    console.log(userStory);
     res.status(200).json(newStory);
   } catch (err) {
     res.status(400).json(err);

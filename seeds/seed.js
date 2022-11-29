@@ -12,23 +12,17 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  const story = await Story.bulkCreate(storyData, {
+  const stories = await Story.bulkCreate(storyData, {
     individualHooks: true,
     returning: true,
   });
 
-  for (let i = 0; i < story.length; i++) {
-    const { id: randomUserId } = users[
-      Math.floor(Math.random() * users.length)
-    ];
-
-    const { id: randomStoryId } = story[
-      Math.floor(Math.random() * story.length)
-    ];
-
+  for (let i = 0; i < stories.length; i++) {
+    const story = stories[i];
+    
     await UserStories.create({
-      user_id: randomUserId,
-      story_id: randomStoryId 
+      user_id: story.creator_Id,
+      story_id: story.id, 
     }).catch((err) => {
       console.log(err);
     });

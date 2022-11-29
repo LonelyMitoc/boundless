@@ -16,7 +16,7 @@
             {{#if story.published }}
               <li class="list-item"> <a href="/story/{{story.id}}" class='list-item is-link'>{{story.title}}</a></li>
             {{else}}
-              <li class='has-text-light'>{{story.title}}</li>
+              <li class='has-text-dark'>{{story.title}}</li>
             {{/if}}
           {{/each}}
       </ul>
@@ -35,10 +35,10 @@
       <p>
         <div id="create-tab" class=" container">
           <form>
-            <input class="input is-primary is-medium mb-2" type="text" placeholder="Enter title...">
+            <input id="new-title" class="input is-primary is-medium mb-2" type="text" placeholder="Enter title...">
 
             <div class="control mb-2">
-              <textarea class="textarea" placeholder="The beginning of your short story..."></textarea>
+              <textarea id="new-content" class="textarea" placeholder="The beginning of your short story..."></textarea>
             </div>
 
             <div class="control is-align-items-center">

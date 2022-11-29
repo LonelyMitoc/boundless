@@ -37,6 +37,7 @@ Story.init(
     contributors: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 0,
     },
     creator_id: {
       type: DataTypes.INTEGER,
