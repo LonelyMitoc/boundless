@@ -13,5 +13,14 @@ Story.belongsToMany(User, {
   unique: false,
   onDelete: 'NO ACTION',
 });
+Story.belongsTo(User,{
+  foreignKey: 'creator_id',
+  onDelete:'NO ACTION',
+  as: 'creator'
+});
+User.hasMany(Story,{
+  foreignKey: 'creator_id',
+  as: 'creator'
+})
 
 module.exports = { User, Story, UserStories };
