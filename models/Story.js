@@ -11,7 +11,7 @@ Story.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -49,6 +49,9 @@ Story.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
+    },
+    date_published: {
+      type: DataTypes.DATE,
     },
   },
   {
