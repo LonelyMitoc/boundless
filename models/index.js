@@ -13,13 +13,17 @@ Story.belongsToMany(User, {
   unique: false,
   onDelete: 'NO ACTION',
 });
+
+
 Story.belongsTo(User,{
   foreignKey: 'creator_id',
+  unique: false,
   onDelete:'NO ACTION',
   as: 'creator'
 });
 User.hasMany(Story,{
   foreignKey: 'creator_id',
+  unqiue: false,
   as: 'creator'
 })
 
