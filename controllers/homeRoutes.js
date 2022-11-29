@@ -1,23 +1,32 @@
 const router = require('express').Router();
-const { Story, User } = require('../models');
+const { Story, User, UserStories} = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
 
-    // const storyData = await Story.findAll({
-    //   include: [
-    //     {
-    //       model: User,
-    //       attributes: ['name'],
-    //     },
-    //   ],
-    // });
+    const storyData = await Story.findAll({
+      where: {
+        published: true
+      },
+      include: [
+        {
+          model: User,
+          through: UserStories,
+          attributes: ['username'],
+        },
+        {
+          model: User,
+          as: 'creator',
+          attributes: ['username'],
+        }
+      ],
+    });
 
-    // // Serialize data so the template can read it
-    // const stories = storyData.map((story) => Story.get({ plain: true }));
-    const stories = [];
+    // Serialize data so the template can read it
+    const stories = storyData.map((story) => story.get({ plain: true }));
     // Pass serialized data and session flag into template
+    console.log(stories);
     res.render('homepage', { 
       stories, 
       logged_in: req.session.logged_in 

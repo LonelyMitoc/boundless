@@ -4,20 +4,23 @@
     "content": "The ducks were very happy to be in the sun. Off in the distance some clouds were forming.",
     "date_created": "2022-06-23 12:34:56",
     "contributors": "4",
-    "published": true
+    "published": true,
+    "creator_id": 1
   },
   {
     "title": "Rubber Ducks In The Rain",
     "content": "The rain came and swept away the rubber ducks with little resistance, as they are inanimate objects.",
     "date_created": "2022-06-27 14:42:01",
     "contributors": "8",
-    "published": true
+    "published": true,
+    "creator_id": 2
   },
   {
     "title": "Rubber Ducks In A Cave",
     "content": "The ducks took refuge in a cave because in this story they're sentient.",
     "date_created": "2022-08-04 08:55:55",
     "contributors": "9",
-    "published": true
+    "published": true,
+    "creator_id": 3
   }
 ]
