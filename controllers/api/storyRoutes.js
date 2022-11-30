@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const { Store } = require('express-session');
+const { check } = require('prettier');
 const { Story, User, UserStories } = require('../../models');
 const withAuth = require('../../utils/auth');
 
@@ -24,6 +26,41 @@ router.post('/', withAuth, async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+router.put('/:id', withAuth, async (req,res)=>{
+  try {
+    const story = await Story.findOne({where: { id: req.params.id}});
+    console.log(story);
+    story.content = req.body.sendText;
+    story.contributors++;
+    story.checked_out = false;
+    await story.save()
+
+    // await UserStories.create({
+    //   user_id: req.session.user_id,
+    //   story_id: story.id,
+    // });
+
+
+    
+  
+
+
+    // if (story.contributors >= 10){
+    //   await Story.update(
+    //   {published: True,},
+    //   {where: {
+    //     id: req.params.id,
+    //   }});
+    //   console.log(story);
+    //}
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
+
+
+
 
 router.delete('/:id', withAuth, async (req, res) => {
   try {
