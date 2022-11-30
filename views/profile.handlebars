@@ -49,17 +49,17 @@
         </div>
         <div id="collaborate-tab" class="container">
           <form>
-            <h2 class="mb-4 story-title">{{getStory.title}}</h2>
-            <p class="mb-4 story-text">
+            <h2 id="story-title" class="mb-4 story-title" data-id="{{getStory.id}}">{{getStory.title}}</h2>
+            <p id="story-text" class="mb-4 story-text">
             {{breaklines getStory.content}}
             </p>
 
             <div class="control mb-4">
-              <textarea class="textarea is-primary" placeholder="Add to this story..."></textarea>
+              <textarea id='new-text' class="textarea is-primary" placeholder="Add to this story..."></textarea>
             </div>
 
             <div class="control is-align-items-center">
-              <button class="button is-medium is-link is-align-items-center">Add</button>
+              <button id="add-button" class="button is-medium is-link is-align-items-center">Add</button>
             </div>
           </form>
         </div>
