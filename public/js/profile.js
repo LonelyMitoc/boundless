@@ -131,13 +131,11 @@ async function collabTab(event){
   } 
 }
 
-
 initialize()
 document.querySelector('#create-tab-button').addEventListener('click', createTab);
 document.querySelector('#collab-tab-button').addEventListener('click', collabTab);
 document.querySelector('#create-button').addEventListener('click', newStory);
 document.querySelector('#add-button').addEventListener('click', updateStory)
-
 
 // document
 //   .querySelector('.project-list')

@@ -4,9 +4,6 @@ const { check } = require('prettier');
 const { Story, User, UserStories } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-
-
-
 router.post('/', withAuth, async (req, res) => {
   try {
     const newStory = await Story.create({
