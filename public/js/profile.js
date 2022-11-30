@@ -49,7 +49,6 @@ async function newStory(event){
 
 }
 
-
 function initialize(){
   const createTB = document.querySelector('#create-tab-button');
   const collabTB = document.querySelector('#collab-tab-button');
@@ -96,13 +95,10 @@ async function collabTab(event){
   } 
 }
 
-
 initialize()
 document.querySelector('#create-tab-button').addEventListener('click', createTab);
 document.querySelector('#collab-tab-button').addEventListener('click', collabTab);
 document.querySelector('#create-button').addEventListener('click', newStory);
-
-
 
 // document
 //   .querySelector('.project-list')
