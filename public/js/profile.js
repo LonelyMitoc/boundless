@@ -50,13 +50,11 @@ async function newStory(event){
 }
 
 
-
 function initialize(){
   const createTB = document.querySelector('#create-tab-button');
   const collabTB = document.querySelector('#collab-tab-button');
   const createTab = document.querySelector('#create-tab');
   const collabTab = document.querySelector('#collaborate-tab');
-
   createTB.classList.add('is-active');
   collabTB.classList.remove('is-active');
   createTab.style.display = '';
@@ -79,6 +77,7 @@ async function createTab(event){
     createTab.style.display = '';
   } 
 }
+
 async function collabTab(event){
   event.preventDefault();
 
@@ -91,8 +90,8 @@ async function collabTab(event){
   } else {
     createTB.classList.remove('is-active');
     collabTB.classList.add('is-active');
-    collabTab.style.display = '';
     createTab.style.display = 'none';
+    collabTab.style.display ='';
 
   } 
 }

@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const sequelize = require('../config/connection');
 const { Story, User, UserStories} = require('../models');
 const withAuth = require('../utils/auth');
 
@@ -39,19 +40,47 @@ router.get('/', async (req, res) => {
 // Use withAuth middleware to prevent access to route
 router.get('/profile', withAuth, async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
+  const storyData = await Story.findAll({
+    where: {
+      published: false,
+      checked_out: false
+    },
+    include: [
+      {
+        model: User,
+        through: UserStories,
+        attributes: ['username'],
+      },
+      {
+        model: User,
+        as: 'creator',
+        attributes: ['username'],
+      }
+    ],
+  });
+  const stories = storyData.map((story) => story.get({ plain: true }));
+  console.log(stories)
+  // Pass serialized data and session flag into template
+  const rand = Math.floor(Math.random()*stories.length)
+  const getStory = stories[rand];
+  console.log(getStory);
+  await sequelize.query(`UPDATE story SET checked_out = True WHERE id = ${getStory.id}`)
+
+
+// Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
       include: [{ model: Story }],
     });
     
     const user = userData.get({ plain: true });
-    console.log(user)
     res.render('profile', {
-      user,
+      user, getStory,
       logged_in: true
     });
-  } catch (err) {
+  } 
+  
+  catch (err) {
     res.status(500).json(err);
   }
 });
