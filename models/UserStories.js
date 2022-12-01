@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
+// Many-to-many association table
 class UserStories extends Model {}
 
 UserStories.init(

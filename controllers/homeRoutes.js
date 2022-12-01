@@ -131,7 +131,7 @@ router.get('/signup', (req, res) => {
     res.redirect('/profile');
     return;
   }
-  
+
   res.render('signup');
 });
 
