@@ -36,7 +36,8 @@ async function getImage(event){
 	method: 'POST',
 	headers: {
 		'content-type': 'application/json',
-		'Authorization': 'Bearer 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',
+		'Authorization': motivateI.getAttribute('src'),
+    
 	},
 	body: JSON.stringify({"prompt":`${storyTitleH2.textContent}`,"n":1,"size": "256x256"})
   };
