@@ -1,6 +1,4 @@
 const router = require('express').Router();
-const { Store } = require('express-session');
-const { check } = require('prettier');
 const { Story, User, UserStories } = require('../../models');
 const withAuth = require('../../utils/auth');
 
