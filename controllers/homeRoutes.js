@@ -46,7 +46,7 @@ router.get('/profile', withAuth, async (req, res) => {
         published: false,
         checked_out: false
       },
-      {
+      include: [{
         model: User,
         as: 'creator',
         attributes: ['username'],
