@@ -35,6 +35,9 @@ header, .project:not(:last-child) {
   font-size: 45px;
   font-family: 'Merriweather', serif;
 }
+#motivate-image{
+  display: none;
+}
 #get-story-container{
   display: none;
 }
