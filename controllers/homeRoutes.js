@@ -27,6 +27,7 @@ router.get('/', async (req, res) => {
     const stories = storyData.map((story) => story.get({ plain: true }));
     // Pass serialized data and session flag into template
     console.log(stories);
+    // res.render is available because
     res.render('homepage', { 
       stories, 
       logged_in: req.session.logged_in 
