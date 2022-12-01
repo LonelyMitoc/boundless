@@ -6,5 +6,5 @@ const returnButtHandler = async (event) => {
 
 
 document
-.querySelector('#fav-butt')
+.querySelector('#return')
 .addEventListener('click', returnButtHandler);
