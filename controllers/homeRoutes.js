@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
         }
       ],
     });
-
+    
     // Serialize data so the template can read it
     const stories = storyData.map((story) => story.get({ plain: true }));
     // Pass serialized data and session flag into template
@@ -37,6 +37,7 @@ router.get('/', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+
 });
 
 // Use withAuth middleware to prevent access to route
@@ -66,7 +67,8 @@ router.get('/profile', withAuth, async (req, res) => {
   const rand = Math.floor(Math.random()*stories.length)
   const getStory = stories[rand];
   console.log(getStory);
-  await sequelize.query(`UPDATE story SET checked_out = True WHERE id = ${getStory.id}`)
+  await sequelize.query(`UPDATE story SET checked_out = True WHERE id = ${getStory.id}`);
+  storyid = getStory.id;
 // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
@@ -79,11 +81,11 @@ router.get('/profile', withAuth, async (req, res) => {
       logged_in: true
     });
   } 
-  
   catch (err) {
     res.status(500).json(err);
   }
 });
+
 
 router.get('/story/:id', async (req, res) => {
   try {

@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const sequelize = require('../../config/connection');
 const { Story, User, UserStories } = require('../../models');
 const withAuth = require('../../utils/auth');
 
@@ -29,26 +30,15 @@ router.put('/:id', withAuth, async (req,res)=>{
     story.content = req.body.sendText;
     story.contributors++;
     story.checked_out = false;
+    if (story.contributors >= 10){
+      story.published = true;
+    }
     await story.save()
-
-    // await UserStories.create({
-    //   user_id: req.session.user_id,
-    //   story_id: story.id,
-    // });
-
-
-    
-  
-
-
-    // if (story.contributors >= 10){
-    //   await Story.update(
-    //   {published: True,},
-    //   {where: {
-    //     id: req.params.id,
-    //   }});
-    //   console.log(story);
-    //}
+    await UserStories.findOrCreate({
+      where:{user_id: req.session.user_id,
+      story_id: story.id,}
+    });
+    res.status(200).json(story)
   } catch (err) {
     res.status(500).json(err);
   }
