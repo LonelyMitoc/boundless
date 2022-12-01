@@ -37,6 +37,8 @@ header, .project:not(:last-child) {
 }
 #motivate-image{
   display: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 #get-story-container{
   display: none;
