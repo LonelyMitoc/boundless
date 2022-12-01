@@ -7,13 +7,15 @@ async function getImage(event) {
   motivateB.style.display = 'none';
   
   const options = {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-      'Authorization': 'Bearer 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',
-    },
-    body: JSON.stringify({ "prompt": `${storyTitleH2.textContent}`, "n": 1, "size": "256x256" })
+	method: 'POST',
+	headers: {
+		'content-type': 'application/json',
+		'Authorization': motivateI.getAttribute('src'),
+    
+	},
+	body: JSON.stringify({"prompt":`${storyTitleH2.textContent}`,"n":1,"size": "256x256"})
   };
+  
   fetch('https://api.openai.com/v1/images/generations', options).then(response => response.json()).then(response => {
     motivateI.setAttribute('src', response.data[0].url);
     motivateI.style.display = 'block';
@@ -96,7 +98,6 @@ function initialize() {
   collabTB.classList.remove('is-active');
   createTab.style.display = '';
   collabTab.style.display = 'none';
-  getImage();
 }
 
 async function createTab(event) {

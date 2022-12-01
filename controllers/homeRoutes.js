@@ -46,31 +46,28 @@ router.get('/profile', withAuth, async (req, res) => {
         published: false,
         checked_out: false
       },
-      include: [
-        {
-          model: User,
-          through: UserStories,
-          attributes: ['username'],
-        },
-        {
-          model: User,
-          as: 'creator',
-          attributes: ['username'],
-        }
-      ],
-    });
+      {
+        model: User,
+        as: 'creator',
+        attributes: ['username'],
+      }
+    ],
+  });
+  
+  // Serialize the data
+  const stories = storyData.map((story) => story.get({ plain: true }));
+  
+  // Select a random story for the user to collaborate
+  const rand = Math.floor(Math.random()*stories.length);
+  const getStory = stories[rand];
 
-    // Serialize the data
-    const stories = storyData.map((story) => story.get({ plain: true }));
-
-    // Select a random story for the user to collaborate
-    const rand = Math.floor(Math.random() * stories.length)
-    const getStory = stories[rand];
-
-    // Change the story checked_out status to true
-    await sequelize.query(`UPDATE story SET checked_out = True WHERE id = ${getStory.id}`);
-
-    // Find the logged in user based on the session ID
+  // Change the story checked_out status to true
+  await sequelize.query(`UPDATE story SET checked_out = True WHERE id = ${getStory.id}`);
+  const key= {
+      key: process.env.OPENAI_API_KEY
+  };
+  
+  // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
       include: [{ model: Story }],
@@ -79,7 +76,7 @@ router.get('/profile', withAuth, async (req, res) => {
     const user = userData.get({ plain: true });
     // Render the profile with the user info and the random story the user will collaborate with
     res.render('profile', {
-      user, getStory,
+      user, getStory, key,
       logged_in: true
     });
   } catch (err) {
