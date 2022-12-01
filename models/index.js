@@ -2,6 +2,7 @@ const User = require('./User');
 const Story = require('./Story');
 const UserStories = require('./UserStories');
 
+// Many-to-Many association
 User.belongsToMany(Story, {
   through: 'user_stories',
   unique: false,
@@ -14,14 +15,14 @@ Story.belongsToMany(User, {
   onDelete: 'NO ACTION',
 });
 
-
-Story.belongsTo(User,{
+// User has many Story || Story belonging to one user (creator)
+Story.belongsTo(User, {
   foreignKey: 'creator_id',
   unique: false,
-  onDelete:'NO ACTION',
+  onDelete: 'NO ACTION',
   as: 'creator'
 });
-User.hasMany(Story,{
+User.hasMany(Story, {
   foreignKey: 'creator_id',
   unqiue: false,
   as: 'creator'

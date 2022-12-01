@@ -1,4 +1,5 @@
-header, .project:not(:last-child) {
+header,
+.project:not(:last-child) {
   border-bottom: 1px solid #ccc;
 }
 
@@ -27,30 +28,40 @@ header, .project:not(:last-child) {
   font-family: 'Oswald', sans-serif;
   font-size: 55px;
 }
-.story-text{
+
+.story-text {
   font-size: 16px;
   font-family: 'Merriweather', serif;
 }
-.story-title{
+
+.story-title {
   font-size: 45px;
   font-family: 'Merriweather', serif;
 }
+
 #motivate-image{
   display: none;
   margin-top: 5px;
   margin-bottom: 5px;
 }
+
 #get-story-container{
   display: none;
 }
-@media screen and (min-width: 600px){
-.navbar {
-    min-height: 3.25rem;
-}}
 
-@media screen and (min-width: 600px){
-.navbar, .navbar-end, .navbar-menu, .navbar-start {
+@media screen and (min-width: 600px) {
+  .navbar {
+    min-height: 3.25rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+
+  .navbar,
+  .navbar-end,
+  .navbar-menu,
+  .navbar-start {
     align-items: stretch;
     display: flex;
-}}
-
+  }
+}

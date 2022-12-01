@@ -12,7 +12,6 @@
     "content": "The rain came and swept away the rubber ducks with little resistance, as they are inanimate objects.",
     "date_created": "2022-06-27 14:42:01",
     "contributors": "8",
-    "published": true,
     "creator_id": 2
   },
   {
@@ -22,5 +21,19 @@
     "contributors": "9",
     "published": true,
     "creator_id": 3
+  },
+  {
+    "title": "Choo Choo Train",
+    "content": "Once upon a time, in a train yard there was a train that could run all day.",
+    "date_created": "2022-08-04 08:55:55",
+    "contributors": "5",
+    "creator_id": 1
+  },
+  {
+    "title": "Train Tracks",
+    "content": "Trains are cliche, how about we talk about the history of train tracks?",
+    "date_created": "2022-08-04 08:55:55",
+    "contributors": "7",
+    "creator_id": 2
   }
 ]
