@@ -16,13 +16,13 @@ Story.belongsToMany(User, {
 });
 
 // User has many Story || Story belonging to one user (creator)
-Story.belongsTo(User,{
+Story.belongsTo(User, {
   foreignKey: 'creator_id',
   unique: false,
-  onDelete:'NO ACTION',
+  onDelete: 'NO ACTION',
   as: 'creator'
 });
-User.hasMany(Story,{
+User.hasMany(Story, {
   foreignKey: 'creator_id',
   unqiue: false,
   as: 'creator'
