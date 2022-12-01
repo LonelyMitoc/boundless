@@ -158,7 +158,6 @@ async function collabTab(event){
   } 
 }
 
-
 initialize()
 document.querySelector('#create-tab-button').addEventListener('click', createTab);
 document.querySelector('#collab-tab-button').addEventListener('click', collabTab);
