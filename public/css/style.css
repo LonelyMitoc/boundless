@@ -35,6 +35,9 @@ header, .project:not(:last-child) {
   font-size: 45px;
   font-family: 'Merriweather', serif;
 }
+#get-story-container{
+  display: none;
+}
 @media screen and (min-width: 600px){
 .navbar {
     min-height: 3.25rem;

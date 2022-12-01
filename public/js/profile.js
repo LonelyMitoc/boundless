@@ -48,15 +48,48 @@ async function newStory(event){
   }
 
 }
+async function updateStory(event){
+  event.preventDefault();
+  const storyTitleH2 = document.querySelector('#story-title');
+  const storyText = document.querySelector('#story-text').textContent;
+  const newText = document.querySelector('#new-text').value.trim();
+  const sendText =`
+  ${storyText}
+  
+  ${newText}
 
+  `;
+  
+  if(newText){
+  const url = `../api/story/${storyTitleH2.dataset.id}`
+    const response= await fetch(url, {
+      method: 'PUT',
+      body: JSON.stringify({ sendText }),
+      headers: {
+      'Content-Type': 'application/json'}
+    });
+    
+    if (response.ok) {
+      console.log(response)
+       //document.location.replace('/profile');
+       alert('Story Updated!');
+       reload();
+       } else {
+       alert('Failed to create project');
+       }
 
+  }
+
+}
+function reload(){
+window.location.href = '/profile';
+}
 
 function initialize(){
   const createTB = document.querySelector('#create-tab-button');
   const collabTB = document.querySelector('#collab-tab-button');
   const createTab = document.querySelector('#create-tab');
   const collabTab = document.querySelector('#collaborate-tab');
-
   createTB.classList.add('is-active');
   collabTB.classList.remove('is-active');
   createTab.style.display = '';
@@ -79,6 +112,7 @@ async function createTab(event){
     createTab.style.display = '';
   } 
 }
+
 async function collabTab(event){
   event.preventDefault();
 
@@ -91,19 +125,17 @@ async function collabTab(event){
   } else {
     createTB.classList.remove('is-active');
     collabTB.classList.add('is-active');
-    collabTab.style.display = '';
     createTab.style.display = 'none';
+    collabTab.style.display ='';
 
   } 
 }
-
 
 initialize()
 document.querySelector('#create-tab-button').addEventListener('click', createTab);
 document.querySelector('#collab-tab-button').addEventListener('click', collabTab);
 document.querySelector('#create-button').addEventListener('click', newStory);
-
-
+document.querySelector('#add-button').addEventListener('click', updateStory)
 
 // document
 //   .querySelector('.project-list')
