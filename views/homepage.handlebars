@@ -1,30 +1,30 @@
 <!-- Loop over each object in the stories array -->
 {{#each stories as |story|}}
-  <div class="card">
-    <div class="card-content">
-      <p class="story-title">
-        {{story.title}}
-      </p>
-      <p class="subtitle">
-        Started by {{story.creator.username}} on {{story.date_created}}. Published {{story.date_published}}
-      </p>
-    </div>
-    <footer class="card-footer">
-      <p class="card-footer-item">
-        <span>
-          Upvoted {{story.upvotes_count}} times!
-        </span>
-      </p>
-      <a href="/story/{{story.id}}" class="card-footer-item">
-        <span>
-          Read Story...
-        </span>
-      </a>
-    </footer>
+<div class="card">
+  <div class="card-content">
+    <p class="story-title">
+      {{story.title}}
+    </p>
+    <p class="subtitle">
+      Started by {{story.creator.username}} on {{story.date_created}}. Published {{story.date_published}}
+    </p>
   </div>
+  <footer class="card-footer">
+    <p class="card-footer-item">
+      <span>
+        Upvoted {{story.upvotes_count}} times!
+      </span>
+    </p>
+    <a href="/story/{{story.id}}" class="card-footer-item">
+      <span>
+        Read Story...
+      </span>
+    </a>
+  </footer>
+</div>
 {{/each}}
 {{#unless stories.length}}
 <div class="container has-text-centered">
-<p class= "is-size-2">No stories published yet. Get writing!</p>
+  <p class="is-size-2">No stories published yet. Get writing!</p>
 </div>
 {{/unless}}
