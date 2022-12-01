@@ -36,7 +36,7 @@ async function getImage(event){
 	method: 'POST',
 	headers: {
 		'content-type': 'application/json',
-		'Authorization': 'Bearer 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',
+		'Authorization': 'Bearer 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',
 	},
 	body: JSON.stringify({"prompt":`${storyTitleH2.textContent}`,"n":1,"size": "256x256"})
   };
@@ -120,7 +120,6 @@ function initialize(){
   collabTB.classList.remove('is-active');
   createTab.style.display = '';
   collabTab.style.display = 'none';
-  getImage();
 }
 
 async function createTab(event){
