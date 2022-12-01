@@ -68,7 +68,9 @@ router.get('/profile', withAuth, async (req, res) => {
   const getStory = stories[rand];
   console.log(getStory);
   await sequelize.query(`UPDATE story SET checked_out = True WHERE id = ${getStory.id}`);
-  storyid = getStory.id;
+  const key= {
+      key: process.env.OPENAI_API_KEY
+  }
 // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
@@ -77,7 +79,7 @@ router.get('/profile', withAuth, async (req, res) => {
     
     const user = userData.get({ plain: true });
     res.render('profile', {
-      user, getStory,
+      user, getStory, key,
       logged_in: true
     });
   } 
