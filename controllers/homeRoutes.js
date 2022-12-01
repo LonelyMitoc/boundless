@@ -3,6 +3,7 @@ const sequelize = require('../config/connection');
 const { Story, User, UserStories} = require('../models');
 const withAuth = require('../utils/auth');
 
+
 router.get('/', async (req, res) => {
   try {
 
@@ -65,8 +66,6 @@ router.get('/profile', withAuth, async (req, res) => {
   const getStory = stories[rand];
   console.log(getStory);
   await sequelize.query(`UPDATE story SET checked_out = True WHERE id = ${getStory.id}`)
-
-
 // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },

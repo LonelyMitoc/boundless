@@ -23,6 +23,31 @@
 //     }
 //   }
 // };
+
+
+async function getImage(event){
+  event.preventDefault();
+
+  const storyTitleH2 = document.querySelector('#story-title');
+  const motivateI = document.querySelector('#motivate-image');
+  const motivateB = document.querySelector('#motivate-me-button');
+  motivateB.style.display = 'none';
+  const options = {
+	method: 'POST',
+	headers: {
+		'content-type': 'application/json',
+		'Authorization': 'Bearer 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',
+	},
+	body: JSON.stringify({"prompt":`${storyTitleH2.textContent}`,"n":1,"size": "256x256"})
+  };
+  fetch('https://api.openai.com/v1/images/generations', options).then(response => response.json()).then(response => {
+  motivateI.setAttribute('src', response.data[0].url);
+  motivateI.style.display = 'block';
+  }).catch(err => console.error(err));
+  
+}
+
+
 async function newStory(event){
   event.preventDefault()
   const title = document.querySelector('#new-title').value.trim();
@@ -31,7 +56,7 @@ async function newStory(event){
 
   if(title && content){
 
-    const response= await fetch('/api/story', {
+    const response = await fetch('/api/story', {
       method: 'POST',
       body: JSON.stringify({ title, content }),
       headers: {
@@ -44,12 +69,13 @@ async function newStory(event){
        } else {
        alert('Failed to create project');
        }
-
   }
-
 }
+
 async function updateStory(event){
   event.preventDefault();
+  const addB = document.querySelector('#add-button');
+  addB.style.display = 'none';
   const storyTitleH2 = document.querySelector('#story-title');
   const storyText = document.querySelector('#story-text').textContent;
   const newText = document.querySelector('#new-text').value.trim();
@@ -79,7 +105,7 @@ async function updateStory(event){
        }
 
   }
-
+  
 }
 function reload(){
 window.location.href = '/profile';
@@ -94,6 +120,7 @@ function initialize(){
   collabTB.classList.remove('is-active');
   createTab.style.display = '';
   collabTab.style.display = 'none';
+  getImage();
 }
 
 async function createTab(event){
@@ -136,8 +163,8 @@ initialize()
 document.querySelector('#create-tab-button').addEventListener('click', createTab);
 document.querySelector('#collab-tab-button').addEventListener('click', collabTab);
 document.querySelector('#create-button').addEventListener('click', newStory);
-document.querySelector('#add-button').addEventListener('click', updateStory)
-
+document.querySelector('#add-button').addEventListener('click', updateStory);
+document.querySelector('#motivate-me-button').addEventListener('click', getImage);
 
 // document
 //   .querySelector('.project-list')
