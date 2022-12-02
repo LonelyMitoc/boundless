@@ -62,7 +62,7 @@ router.get('/profile', withAuth, async (req, res) => {
   const getStory = stories[rand];
 
   // Change the story checked_out status to true
-  await sequelize.query(`UPDATE story SET checked_out = True WHERE id = ${getStory.id}`);
+  //await sequelize.query(`UPDATE story SET checked_out = True WHERE id = ${getStory.id}`);
   const key= {
       key: process.env.OPENAI_API_KEY
   };

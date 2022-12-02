@@ -30,7 +30,6 @@ async function newStory(event) {
   event.preventDefault()
   const title = document.querySelector('#new-title').value.trim();
   const content = document.querySelector('#new-content').value.trim();
-  console.log([title, content]);
 
   if (title && content) {
 
@@ -43,6 +42,7 @@ async function newStory(event) {
     });
 
     if (response.ok) {
+      document.location.replace('/profile');
       alert('Story submitted!');
     } else {
       alert('Failed to create project');
@@ -75,8 +75,7 @@ async function updateStory(event) {
     });
 
     if (response.ok) {
-      console.log(response)
-      //document.location.replace('/profile');
+      document.location.replace('/profile');
       alert('Story Updated!');
     } else {
       alert('Failed to create project');
