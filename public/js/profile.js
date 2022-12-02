@@ -90,6 +90,7 @@ function initialize() {
   const collabTB = document.querySelector('#collab-tab-button');
   const createTab = document.querySelector('#create-tab');
   const collabTab = document.querySelector('#collaborate-tab');
+  document.querySelector('#motivate-me-button').style.display = 'none';
   createTB.classList.add('is-active');
   collabTB.classList.remove('is-active');
   createTab.style.display = '';
@@ -120,7 +121,7 @@ async function collabTab(event) {
   const collabTB = document.querySelector('#collab-tab-button');
   const createTab = document.querySelector('#create-tab');
   const collabTab = document.querySelector('#collaborate-tab');
-
+  document.querySelector('#motivate-me-button').style.display = 'block';
   if (collabTB.classList.contains('is-active')) {
   } else {
     createTB.classList.remove('is-active');
