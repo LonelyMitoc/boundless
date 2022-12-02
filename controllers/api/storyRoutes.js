@@ -32,6 +32,7 @@ router.put('/:id', withAuth, async (req, res) => {
     story.checked_out = false;
     if (story.contributors >= 10) {
       story.published = true;
+      story.date_published = sequelize.literal('CURRENT_TIMESTAMP');
     };
     await story.save();
 
