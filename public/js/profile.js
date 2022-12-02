@@ -11,7 +11,7 @@ async function getImage(event) {
 	method: 'POST',
 	headers: {
 		'content-type': 'application/json',
-		'Authorization': motivateI.getAttribute('src'),
+		'Authorization': motivateI.dataset.src,
     
 	},
 	body: JSON.stringify({"prompt":`${storyTitleH2.innerText}`,"n":1,"size": "256x256"})
@@ -90,6 +90,7 @@ function initialize() {
   const collabTB = document.querySelector('#collab-tab-button');
   const createTab = document.querySelector('#create-tab');
   const collabTab = document.querySelector('#collaborate-tab');
+  document.querySelector('#motivate-me-button').style.display = 'none';
   createTB.classList.add('is-active');
   collabTB.classList.remove('is-active');
   createTab.style.display = '';
@@ -120,7 +121,7 @@ async function collabTab(event) {
   const collabTB = document.querySelector('#collab-tab-button');
   const createTab = document.querySelector('#create-tab');
   const collabTab = document.querySelector('#collaborate-tab');
-
+  document.querySelector('#motivate-me-button').style.display = 'block';
   if (collabTB.classList.contains('is-active')) {
   } else {
     createTB.classList.remove('is-active');
