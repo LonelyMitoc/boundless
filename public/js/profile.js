@@ -11,7 +11,7 @@ async function getImage(event) {
 	method: 'POST',
 	headers: {
 		'content-type': 'application/json',
-		'Authorization': motivateI.getAttribute('src'),
+		'Authorization': motivateI.dataset.src,
     
 	},
 	body: JSON.stringify({"prompt":`${storyTitleH2.innerText}`,"n":1,"size": "256x256"})
