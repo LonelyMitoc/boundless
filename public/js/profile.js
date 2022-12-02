@@ -13,7 +13,7 @@ async function getImage(event) {
 		'Authorization': motivateI.getAttribute('src'),
     
 	},
-	body: JSON.stringify({"prompt":`${storyTitleH2.textContent}`,"n":1,"size": "256x256"})
+	body: JSON.stringify({"prompt":`${storyTitleH2.innerText}`,"n":1,"size": "256x256"})
   };
   
   fetch('https://api.openai.com/v1/images/generations', options).then(response => response.json()).then(response => {
@@ -54,7 +54,7 @@ async function updateStory(event) {
   const addB = document.querySelector('#add-button');
   addB.style.display = 'none';
   const storyTitleH2 = document.querySelector('#story-title');
-  const storyText = document.querySelector('#story-text').textContent;
+  const storyText = document.querySelector('#story-text').innerText;
   const newText = document.querySelector('#new-text').value.trim();
   const sendText = `
   ${storyText}
