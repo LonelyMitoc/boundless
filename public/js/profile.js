@@ -4,8 +4,9 @@ async function getImage(event) {
   const storyTitleH2 = document.querySelector('#story-title');
   const motivateI = document.querySelector('#motivate-image');
   const motivateB = document.querySelector('#motivate-me-button');
+  const loader = document.querySelector('#loader');
   motivateB.style.display = 'none';
-  
+  loader.style.display = 'block';
   const options = {
 	method: 'POST',
 	headers: {
@@ -18,6 +19,7 @@ async function getImage(event) {
   
   fetch('https://api.openai.com/v1/images/generations', options).then(response => response.json()).then(response => {
     motivateI.setAttribute('src', response.data[0].url);
+    loader.style.display = 'none';
     motivateI.style.display = 'block';
   }).catch(err => console.error(err));
 
@@ -41,7 +43,6 @@ async function newStory(event) {
     });
 
     if (response.ok) {
-      document.location.replace('/profile');
       alert('Story submitted!');
     } else {
       alert('Failed to create project');
@@ -77,16 +78,12 @@ async function updateStory(event) {
       console.log(response)
       //document.location.replace('/profile');
       alert('Story Updated!');
-      reload();
     } else {
       alert('Failed to create project');
     }
 
   }
 
-}
-function reload() {
-  window.location.href = '/profile';
 }
 
 function initialize() {
